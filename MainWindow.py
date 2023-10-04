@@ -6,8 +6,8 @@ class MainWindow(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        tab_widget = CentralWidget(parent)
+        memory = CentralWidget(parent)
 
-        self.setCentralWidget(tab_widget)
+        self.setCentralWidget(memory)
 
         self.setWindowTitle("Memory")

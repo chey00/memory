@@ -35,8 +35,6 @@ class MyLabel(QLabel):
 
     @pyqtSlot()
     def turn_card(self):
-        print("got a call")
-
         if not self.__is_turned:
             self.setPixmap(self.__icon_background)
             self.__is_turned = True
