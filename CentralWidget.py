@@ -9,13 +9,10 @@ class CentralWidget(QWidget):
     def __init__(self, parent=None):
         super(CentralWidget, self).__init__(parent)
 
-        pixmap_cover = QPixmap("cover.jpg").scaledToWidth(250, Qt.TransformationMode.SmoothTransformation)
-
         list_of_cards = list() # []
         number_of_cards = 8
         for i in range(number_of_cards):
-            list_of_cards.append(MyLabel(parent))
-            list_of_cards[i].setPixmap(pixmap_cover)
+            list_of_cards.append(MyLabel("cover.jpg", "BMW.jpg", parent))
 
         layout = QGridLayout()
 

@@ -1,15 +1,27 @@
-import typing
-
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, pyqtSlot
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QLabel
-from PyQt6.uic.properties import QtGui
 
 
 class MyLabel(QLabel):
-    def __init__(self, parent=None):
+    def __init__(self, back, front, parent=None):
         super(MyLabel, self).__init__(parent)
 
+        self.str_front = front
+        self.pixmap_front = QPixmap(front).scaledToWidth(250, Qt.TransformationMode.SmoothTransformation)
+
+        self.show_back = False
+        self.pixmap_back = QPixmap(back).scaledToWidth(250, Qt.TransformationMode.SmoothTransformation)
+        self.setPixmap(self.pixmap_back)
+
     def mouseReleaseEvent(self, ev) -> None:
-        pixmap_cover = QPixmap("porsche.jpeg").scaledToWidth(250, Qt.TransformationMode.SmoothTransformation)
-        self.setPixmap(pixmap_cover)
+        self.switch()
+
+    @pyqtSlot()
+    def switch(self):
+        if self.show_back:
+            self.setPixmap(self.pixmap_back)
+            self.show_back = False
+        else:
+            self.setPixmap(self.pixmap_front)
+            self.show_back = True
