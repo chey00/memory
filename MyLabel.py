@@ -1,9 +1,11 @@
-from PyQt6.QtCore import Qt, pyqtSlot
+from PyQt6.QtCore import Qt, pyqtSlot, pyqtSignal
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtWidgets import QLabel
 
 
 class MyLabel(QLabel):
+    signal_front_cover_name = pyqtSignal(str)
+
     def __init__(self, back, front, parent=None):
         super(MyLabel, self).__init__(parent)
 
@@ -23,5 +25,7 @@ class MyLabel(QLabel):
             self.setPixmap(self.pixmap_back)
             self.show_back = False
         else:
+            self.signal_front_cover_name.emit(self.str_front)
+
             self.setPixmap(self.pixmap_front)
             self.show_back = True
